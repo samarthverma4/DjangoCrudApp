@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <div class="container">
+        <h1 class="text-center">Add New Member</h1>
+    </div>
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="" class="from-label">First Name</label>
+                <input type="text" class="form-control" name="fname">
+                <small class="text-danger">{{form.fname.errors}}</small>
+            </div>
+            <div class="mb-3">
+                <label for="" class="from-label">Last Name</label>
+                <input type="text" class="form-control" name="lname">
+                <small class="text-danger">{{form.fname.errors}}</small>
+
+            </div>
+            <div class="mb-3">
+                <label for="" class="from-label">Email</label>
+                <input type="text" class="form-control" name="email">
+                <small class="text-danger">{{form.fname.errors}}</small>
+
+            </div>
+            <div class="mb-3">
+                <label for="" class="from-label">Contact</label>
+                <input type="text" class="form-control" name="contact">
+                <small class="text-danger">{{form.fname.errors}}</small>
+
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container">
+        <h1>All Members Data</h1>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in all %}
+                <tr>
+                    <td>{{item.fname}}</td>
+                    <td>{{item.lname}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.contact}}</td>
+                    <td>
+                        <a href="/update/{{item.id}}" class="btn btn-dark btn-sm" role="btn">Update</a>
+                        <a href="/delete/{{item.id}}" class="btn btn-dark btn-sm" role="btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}
